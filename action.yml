@@ -1,6 +1,6 @@
-name: "Bash Action Template"
+name: "Docfx Action"
 author: "PhantasmicDev"
-description: "A template with the bare minimum to begin developing a custom GitHub action that runs a bash script."
+description: ""
 branding:
   icon: "file-text"
   color: "white"
