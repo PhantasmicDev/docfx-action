@@ -1,17 +1,30 @@
-name: "Docfx Action"
+name: "docfx Action"
 author: "PhantasmicDev"
-description: ""
+description: "Call docfx in your github workflow."
 branding:
-  icon: "file-text"
+  icon: "book-open"
   color: "white"
 
 inputs:
   my-input:
     description: "Input Example"
     required: false
+  command:
+    description: "The command to run. If only building, the desired docfx.json file."
+    required: true
+  docfx-version:
+    description: "Desired version of docfx. If left blank, the latest version of docfx is used."
 
 runs:
   using: "composite"
   steps:
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.x
+
     - run: $GITHUB_ACTION_PATH/run.sh
       shell: bash
+      env:
+        COMMAND: "${{ inputs.command }}"
+        DOCFX_VERSION: "${{ inputs.docfx-version }}"
